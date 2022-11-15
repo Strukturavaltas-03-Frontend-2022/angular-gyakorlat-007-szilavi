@@ -50295,7 +50295,7 @@ If '${name}' is a directive input, make sure the directive is imported by the cu
           pattern=".{8,}"
           required
         />
-        <div *ngIf="eventForm.controls['name']?.valid" class="error-message">
+        <div *ngIf="!eventForm.controls['name']?.valid" class="error-message">
           A n\xE9vnek legal\xE1bb 8 karaterb\u0151l kell \xE1llnia.
         </div>
       </div>
@@ -50309,7 +50309,7 @@ If '${name}' is a directive input, make sure the directive is imported by the cu
           [ngModel]="event.date"
           required
         />
-        <div *ngIf="eventForm.controls['date']?.valid" class="error-message">
+        <div *ngIf="!eventForm.controls['date']?.valid" class="error-message">
           Nem megfelel\u0151.
         </div>
       </div>
@@ -50323,7 +50323,7 @@ If '${name}' is a directive input, make sure the directive is imported by the cu
           [ngModel]="event.time"
           required
         />
-        <div *ngIf="eventForm.controls['time']?.valid" class="error-message">
+        <div *ngIf="!eventForm.controls['time']?.valid" class="error-message">
           Nem megfelel\u0151.
         </div>
       </div>
@@ -50338,7 +50338,7 @@ If '${name}' is a directive input, make sure the directive is imported by the cu
           required
         />
         <div
-          *ngIf="eventForm.controls['location']?.valid"
+          *ngIf="!eventForm.controls['location']?.valid"
           class="error-message"
         >
           Nem megfelel\u0151.
@@ -50399,9 +50399,10 @@ If '${name}' is a directive input, make sure the directive is imported by the cu
 
   // src/app/page/event-editor/event-editor.component.ts
   var EventEditorComponent = class {
-    constructor(eventService, ar) {
+    constructor(eventService, ar, router) {
       this.eventService = eventService;
       this.ar = ar;
+      this.router = router;
       this.event = new Event();
     }
     ngOnInit() {
@@ -50410,7 +50411,7 @@ If '${name}' is a directive input, make sure the directive is imported by the cu
       }));
     }
     onUpdate(event) {
-      this.eventService.update(this.event);
+      this.eventService.update(this.event).subscribe((event2) => this.router.navigate(["event"]));
     }
   };
   EventEditorComponent = __decorateClass([
@@ -50419,7 +50420,8 @@ If '${name}' is a directive input, make sure the directive is imported by the cu
       template: event_editor_component_default || ""
     }),
     __decorateParam(0, Inject(EventService)),
-    __decorateParam(1, Inject(ActivatedRoute))
+    __decorateParam(1, Inject(ActivatedRoute)),
+    __decorateParam(2, Inject(Router))
   ], EventEditorComponent);
 
   // src/mocks/event.service.mock.ts

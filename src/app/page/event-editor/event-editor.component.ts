@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { EventService } from 'src/app/service/event.service';
 import { Event } from 'src/app/model/event';
@@ -13,7 +13,11 @@ import { NgForm } from '@angular/forms';
 export class EventEditorComponent implements OnInit {
   event: Event = new Event();
 
-  constructor(private eventService: EventService, private ar: ActivatedRoute) {}
+  constructor(
+    private eventService: EventService,
+    private ar: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.ar.params.subscribe((params) =>
@@ -24,6 +28,8 @@ export class EventEditorComponent implements OnInit {
   }
 
   onUpdate(event: NgForm): void {
-    this.eventService.update(this.event);
+    this.eventService
+      .update(this.event)
+      .subscribe((event) => this.router.navigate(['event']));
   }
 }

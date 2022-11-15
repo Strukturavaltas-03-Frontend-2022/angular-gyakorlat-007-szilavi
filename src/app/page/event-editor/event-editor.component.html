@@ -12,7 +12,7 @@
           pattern=".{8,}"
           required
         />
-        <div *ngIf="eventForm.controls['name']?.valid" class="error-message">
+        <div *ngIf="!eventForm.controls['name']?.valid" class="error-message">
           A névnek legalább 8 karaterből kell állnia.
         </div>
       </div>
@@ -26,7 +26,7 @@
           [ngModel]="event.date"
           required
         />
-        <div *ngIf="eventForm.controls['date']?.valid" class="error-message">
+        <div *ngIf="!eventForm.controls['date']?.valid" class="error-message">
           Nem megfelelő.
         </div>
       </div>
@@ -40,7 +40,7 @@
           [ngModel]="event.time"
           required
         />
-        <div *ngIf="eventForm.controls['time']?.valid" class="error-message">
+        <div *ngIf="!eventForm.controls['time']?.valid" class="error-message">
           Nem megfelelő.
         </div>
       </div>
@@ -55,7 +55,7 @@
           required
         />
         <div
-          *ngIf="eventForm.controls['location']?.valid"
+          *ngIf="!eventForm.controls['location']?.valid"
           class="error-message"
         >
           Nem megfelelő.
