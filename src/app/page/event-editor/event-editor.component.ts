@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
 import { EventService } from 'src/app/service/event.service';
 import { Event } from 'src/app/model/event';
 import { NgForm } from '@angular/forms';
@@ -29,7 +28,7 @@ export class EventEditorComponent implements OnInit {
 
   onUpdate(event: NgForm): void {
     this.eventService
-      .update(this.event)
+      .update(event.value)
       .subscribe((event) => this.router.navigate(['event']));
   }
 }

@@ -50347,7 +50347,7 @@ If '${name}' is a directive input, make sure the directive is imported by the cu
       <button
         [disabled]="!eventForm.form.valid"
         class="btn btn-primary"
-        (click)="onUpdate(ngForm)"
+        (click)="onUpdate(eventForm)"
       >
         Save
       </button>
@@ -50411,7 +50411,7 @@ If '${name}' is a directive input, make sure the directive is imported by the cu
       }));
     }
     onUpdate(event) {
-      this.eventService.update(this.event).subscribe((event2) => this.router.navigate(["event"]));
+      this.eventService.update(event.value).subscribe((event2) => this.router.navigate(["event"]));
     }
   };
   EventEditorComponent = __decorateClass([
