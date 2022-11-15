@@ -9,17 +9,21 @@ const routes: Routes = [
     component: EventsListComponent,
   },
   {
+    path: 'event',
+    component: EventsListComponent,
+  },
+  {
     path: 'event/:id',
     component: EventEditorComponent,
   },
   {
     path: '**',
     redirectTo: '',
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

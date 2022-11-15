@@ -1,0 +1,73 @@
+<div class="row" *ngIf="event">
+  <div class="col-12">
+    <form #eventForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          class="form-control"
+          [ngModel]="event.name"
+          pattern=".{8,}"
+          required
+        />
+        <div *ngIf="eventForm.controls['name']?.valid" class="error-message">
+          A névnek legalább 8 karaterből kell állnia.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input
+          id="date"
+          name="date"
+          type="text"
+          class="form-control"
+          [ngModel]="event.date"
+          required
+        />
+        <div *ngIf="eventForm.controls['date']?.valid" class="error-message">
+          Nem megfelelő.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="time">Date</label>
+        <input
+          id="time"
+          name="time"
+          type="text"
+          class="form-control"
+          [ngModel]="event.time"
+          required
+        />
+        <div *ngIf="eventForm.controls['time']?.valid" class="error-message">
+          Nem megfelelő.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input
+          id="location"
+          name="location"
+          type="text"
+          class="form-control"
+          [ngModel]="event.location"
+          required
+        />
+        <div
+          *ngIf="eventForm.controls['location']?.valid"
+          class="error-message"
+        >
+          Nem megfelelő.
+        </div>
+      </div>
+      <button
+        [disabled]="!eventForm.form.valid"
+        class="btn btn-primary"
+        (click)="onUpdate(ngForm)"
+      >
+        Save
+      </button>
+    </form>
+  </div>
+</div>
